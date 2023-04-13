@@ -39,8 +39,8 @@ P.S. You can delete this when you're done too. It's your config now :)
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = ','
+vim.g.maplocalleader = ','
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -169,6 +169,9 @@ require('lazy').setup({
     },
     build = ":TSUpdate",
   },
+
+  -- peter edit
+  { 'alexghergh/nvim-tmux-navigation', opts = {} },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -383,7 +386,9 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  -- Peter disable since i use it for tmux-navigation
+  -- TODO replace?
+  -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -493,3 +498,42 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+
+-- my edits
+
+vim.keymap.set('i', 'jk', '<ESC>', { noremap = true, silent = true })
+
+-- Tmux
+require('nvim-tmux-navigation').setup {
+  keybindings = {
+      left = "<C-h>",
+      down = "<C-j>",
+      up = "<C-k>",
+      right = "<C-l>",
+      -- don't really use these
+      last_active = "<C-\\>",
+      next = "<C-Space>",
+  }
+}
+
+-- pane creation and resizing
+vim.keymap.set('n', '<leader>|', '<Cmd>vsplit<CR>', {silent = true})
+vim.keymap.set('n', '<leader>-', '<Cmd>split<CR>', {silent = true})
+vim.keymap.set('n', '<leader>L', ':vertical resize +5<CR>', {silent = true})
+vim.keymap.set('n', '<leader>H', ':vertical resize -5<CR>', {silent = true})
+vim.keymap.set('n', '<leader>J', ':resize +5<CR>', {silent = true})
+vim.keymap.set('n', '<leader>K', ':resize -5<CR>', {silent = true})
+--" jump to nerdtree pane (or top left)
+--noremap <C-n> <C-W><C-T>
+--" jump back to prev pane
+--noremap <C-p> <C-W><C-P>
+
+-- noremap <leader>l :Align
+-- nnoremap <leader>a :Ag<space>
+-- nnoremap <leader>b :CtrlPBuffer<CR>
+-- nnoremap <leader>d :NERDTreeToggle<CR>
+-- nnoremap <leader>t :FZF<CR>
+-- nnoremap <leader>] :TagbarToggle<CR>
+-- nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
+-- nnoremap <leader>g :GitGutterToggle<CR>
