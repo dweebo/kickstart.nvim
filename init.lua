@@ -178,6 +178,15 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>d', ':NERDTreeToggle<CR>', {noremap = true, silent = true})
       vim.keymap.set('n', '<leader>f', ':NERDTreeFind<CR>', {noremap = true, silent = true})
       vim.keymap.set('n', '<C-n>', '<C-W><C-T>', {noremap = true, silent = true})
+
+      vim.g.NERDTreeShowHidden=1
+
+      -- close nvim if only remaining buffer is NERDTree
+      local nerdtree_group = vim.api.nvim_create_augroup('NERDTree', { clear = true })
+      vim.api.nvim_create_autocmd('BufEnter', {
+        command = "if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif",
+        group = nerdtree_group
+      })
     end
   },
 
