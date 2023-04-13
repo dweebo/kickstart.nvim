@@ -172,6 +172,15 @@ require('lazy').setup({
 
   -- peter edit
   { 'alexghergh/nvim-tmux-navigation', opts = {} },
+  { 'scrooloose/nerdtree',
+    opts = {} ,
+    config = function()
+      vim.keymap.set('n', '<leader>d', ':NERDTreeToggle<CR>', {noremap = true, silent = true})
+      vim.keymap.set('n', '<leader>f', ':NERDTreeFind<CR>', {noremap = true, silent = true})
+      vim.keymap.set('n', '<C-n>', '<C-W><C-T>', {noremap = true, silent = true})
+    end
+  },
+
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -518,21 +527,15 @@ require('nvim-tmux-navigation').setup {
 }
 
 -- pane creation and resizing
-vim.keymap.set('n', '<leader>|', '<Cmd>vsplit<CR>', {silent = true})
-vim.keymap.set('n', '<leader>-', '<Cmd>split<CR>', {silent = true})
-vim.keymap.set('n', '<leader>L', ':vertical resize +5<CR>', {silent = true})
-vim.keymap.set('n', '<leader>H', ':vertical resize -5<CR>', {silent = true})
-vim.keymap.set('n', '<leader>J', ':resize +5<CR>', {silent = true})
-vim.keymap.set('n', '<leader>K', ':resize -5<CR>', {silent = true})
---" jump to nerdtree pane (or top left)
---noremap <C-n> <C-W><C-T>
---" jump back to prev pane
---noremap <C-p> <C-W><C-P>
+vim.keymap.set('n', '<leader>|', '<Cmd>vsplit<CR>', {silent = true, desc = "Vertical Split"})
+vim.keymap.set('n', '<leader>-', '<Cmd>split<CR>', {silent = true, desc = "Split"})
+vim.keymap.set('n', '<leader>L', ':vertical resize +5<CR>', {silent = true, desc = "Vertical Resize Right"})
+vim.keymap.set('n', '<leader>H', ':vertical resize -5<CR>', {silent = true, desc = "Vertical Resize Left"})
+vim.keymap.set('n', '<leader>J', ':resize +5<CR>', {silent = true, desc = "Resize Down"})
+vim.keymap.set('n', '<leader>K', ':resize -5<CR>', {silent = true, desc = "Resize Up"})
 
--- noremap <leader>l :Align
+-- TODO?
 -- nnoremap <leader>a :Ag<space>
--- nnoremap <leader>b :CtrlPBuffer<CR>
--- nnoremap <leader>d :NERDTreeToggle<CR>
 -- nnoremap <leader>t :FZF<CR>
 -- nnoremap <leader>] :TagbarToggle<CR>
 -- nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
