@@ -312,7 +312,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
+  ensure_installed = { 'dockerfile', 'gitignore', 'go', 'lua', 'python', 'javascript', 'typescript', 'vimdoc', 'vim', 'json', 'yaml', 'ruby', 'markdown' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
@@ -545,6 +545,8 @@ vim.keymap.set('n', '<leader>|', '<Cmd>vsplit<CR>', {silent = true, desc = "Vert
 vim.keymap.set('n', '<leader>-', '<Cmd>split<CR>', {silent = true, desc = "Split"})
 vim.keymap.set('n', '<leader>L', ':vertical resize +5<CR>', {silent = true, desc = "Vertical Resize Right"})
 vim.keymap.set('n', '<leader>H', ':vertical resize -5<CR>', {silent = true, desc = "Vertical Resize Left"})
+vim.keymap.set('n', '<leader>J', ':resize +5<CR>', {silent = true, desc = "Resize Down"})
+vim.keymap.set('n', '<leader>K', ':resize -5<CR>', {silent = true, desc = "Resize Up"})
 vim.keymap.set('n', '<leader>J', ':resize +5<CR>', {silent = true, desc = "Resize Down"})
 vim.keymap.set('n', '<leader>K', ':resize -5<CR>', {silent = true, desc = "Resize Up"})
 
