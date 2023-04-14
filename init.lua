@@ -249,6 +249,17 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+-- peter
+-- plugin should handle this
+-- vim.opt.tabstop = 8
+-- vim.opt.softtabstop = 2
+-- vim.opt.shiftwidth = 2
+-- vim.opt.expandtab = true
+vim.opt.relativenumber = true
+vim.opt.scrolloff = 3
+-- vim.opt.list = true
+-- vim.opt.listchars="tab:▸\ ,trail:▫"
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
