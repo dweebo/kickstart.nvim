@@ -547,12 +547,3 @@ vim.keymap.set('n', '<leader>L', ':vertical resize +5<CR>', {silent = true, desc
 vim.keymap.set('n', '<leader>H', ':vertical resize -5<CR>', {silent = true, desc = "Vertical Resize Left"})
 vim.keymap.set('n', '<leader>J', ':resize +5<CR>', {silent = true, desc = "Resize Down"})
 vim.keymap.set('n', '<leader>K', ':resize -5<CR>', {silent = true, desc = "Resize Up"})
-vim.keymap.set('n', '<leader>J', ':resize +5<CR>', {silent = true, desc = "Resize Down"})
-vim.keymap.set('n', '<leader>K', ':resize -5<CR>', {silent = true, desc = "Resize Up"})
-
--- TODO?
--- nnoremap <leader>a :Ag<space>
--- nnoremap <leader>t :FZF<CR>
--- nnoremap <leader>] :TagbarToggle<CR>
--- nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
--- nnoremap <leader>g :GitGutterToggle<CR>
