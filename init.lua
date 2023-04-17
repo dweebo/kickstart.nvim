@@ -189,6 +189,43 @@ require('lazy').setup({
       })
     end
   },
+  { 'fatih/vim-go', opts = {}, config = function() end },
+  {
+    "jackMort/ChatGPT.nvim",
+      event = "VeryLazy",
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim"
+      },
+      config = function()
+        require("chatgpt").setup({
+            edit_with_instructions = {
+              keymaps = { -- there is no close (yet) but :bd works
+                accept = "<C-y>",
+                toggle_diff = "<C-d>",
+                toggle_settings = "<C-o>",
+                cycle_windows = "<Tab>",
+                use_output_as_input = "<C-i>",
+              },
+            },
+            chat = {
+                keymaps = {
+                    close = { "jk", "<Esc>" },
+                    yank_last = "<C-y>",
+                    scroll_up = "<C-u>",
+                    scroll_down = "<C-d>",
+                    toggle_settings = "<C-o>",
+                    new_session = "<C-n>",
+                    cycle_windows = "<Tab>",
+                },
+            },
+            popup_input = {
+                submit = "<C-s>",
+            },
+        })
+      end,
+  },
 
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
@@ -251,10 +288,10 @@ vim.o.termguicolors = true
 
 -- peter
 -- plugin should handle this
--- vim.opt.tabstop = 8
+vim.opt.tabstop = 4
 -- vim.opt.softtabstop = 2
 -- vim.opt.shiftwidth = 2
--- vim.opt.expandtab = true
+vim.opt.expandtab = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 3
 -- vim.opt.list = true
@@ -449,6 +486,18 @@ local servers = {
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
+  gopls = {},
+
+  yamlls = {
+    yaml = {
+      validate = true,
+      completion = true,
+      format = {
+        singleQuote = true
+      },
+      keyOrdering = false
+    },
+  },
 
   lua_ls = {
     Lua = {
@@ -558,3 +607,8 @@ vim.keymap.set('n', '<leader>L', ':vertical resize +5<CR>', {silent = true, desc
 vim.keymap.set('n', '<leader>H', ':vertical resize -5<CR>', {silent = true, desc = "Vertical Resize Left"})
 vim.keymap.set('n', '<leader>J', ':resize +5<CR>', {silent = true, desc = "Resize Down"})
 vim.keymap.set('n', '<leader>K', ':resize -5<CR>', {silent = true, desc = "Resize Up"})
+
+-- chat gpt
+vim.keymap.set('n', '<leader>gp', ':ChatGPT<CR>', {silent = true, desc = "Query ChatGPT"})
+vim.keymap.set('n', '<leader>ge', ':ChatGPTEditWithInstructions<CR>', {silent = true, desc = "Query ChatGPT Edit With Instructions"})
+
