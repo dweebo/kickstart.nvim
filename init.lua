@@ -226,6 +226,7 @@ require('lazy').setup({
         })
       end,
   },
+  { 'mbbill/undotree' },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -611,3 +612,31 @@ vim.keymap.set('n', '<leader>K', ':resize -5<CR>', {silent = true, desc = "Resiz
 vim.keymap.set('n', '<leader>gp', ':ChatGPT<CR>', {silent = true, desc = "Query ChatGPT"})
 vim.keymap.set('n', '<leader>ge', ':ChatGPTEditWithInstructions<CR>', {silent = true, desc = "Query ChatGPT Edit With Instructions"})
 
+-- undotree
+vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, {silent = true, desc = "UndoTree"})
+
+-- undo stuff
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
+
+-- visual mode move
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- primeagen
+-- greatest remap ever
+vim.keymap.set("x", "<leader>p", [["_dP]])
+-- next greatest remap ever : asbjornHaland
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+
+
+local remove_trailing_spaces_group = vim.api.nvim_create_augroup('remove_trailing_spaces_group', { clear = true })
+vim.api.nvim_create_autocmd({"BufWritePre"}, {
+    group = remove_trailing_spaces_group,
+    pattern = "*",
+    command = [[%s/\s\+$//e]],
+})
